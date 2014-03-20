@@ -1,0 +1,11 @@
+# Server (js:server.js)
+-main Server
+-js app/server.js
+-lib js-kit
+-cp haxe
+
+# Client (js:main.js)
+--next
+-main Client
+-js app/public/scripts/main.js
+-cp haxe

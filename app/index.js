@@ -104,15 +104,23 @@ AppGenerator.prototype.editorConfig = function editorConfig() {
 };
 
 AppGenerator.prototype.h5bp = function h5bp() {
-  this.copy('favicon.ico', 'app/favicon.ico');
-  this.copy('404.html', 'app/404.html');
-  this.copy('robots.txt', 'app/robots.txt');
-  this.copy('htaccess', 'app/.htaccess');
+  this.copy('favicon.ico', 'app/public/favicon.ico');
+  this.copy('404.html', 'app/public/404.html');
+  this.copy('robots.txt', 'app/public/robots.txt');
+  this.copy('htaccess', 'app/public/.htaccess');
+};
+
+AppGenerator.prototype.haxe = function haxe() {
+  this.mkdir('haxe');
+  this.copy('haxe/Server.hx', 'haxe/Server.hx');
+  this.copy('haxe/Client.hx', 'haxe/Client.hx');
+  this.copy('build.hxml', 'build.hxml');
+  
 };
 
 AppGenerator.prototype.mainStylesheet = function mainStylesheet() {
   var css = 'main.' + (this.includeCompass ? 's' : '') + 'css';
-  this.copy(css, 'app/styles/' + css);
+  this.copy(css, 'app/public/styles/' + css);
 };
 
 AppGenerator.prototype.writeIndex = function writeIndex() {
@@ -150,20 +158,11 @@ AppGenerator.prototype.writeIndex = function writeIndex() {
 
 AppGenerator.prototype.app = function app() {
   this.mkdir('app');
-  this.mkdir('app/scripts');
-  this.mkdir('app/styles');
-  this.mkdir('app/images');
-  this.write('app/index.html', this.indexFile);
-
-  if (this.coffee) {
-    this.write(
-      'app/scripts/main.coffee',
-      'console.log "\'Allo from CoffeeScript!"'
-    );
-  }
-  else {
-    this.write('app/scripts/main.js', 'console.log(\'\\\'Allo \\\'Allo!\');');
-  }
+  this.mkdir('app/public');
+  this.mkdir('app/public/scripts');
+  this.mkdir('app/public/styles');
+  this.mkdir('app/public/images');
+  this.write('app/public/index.html', this.indexFile);
 };
 
 AppGenerator.prototype.install = function () {
