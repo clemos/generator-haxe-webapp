@@ -1,11 +1,11 @@
 Description:
-    Creates a new basic front-end web application.
+    Creates a new Haxe/JS web application (server and client).
 
 Options:
     Bootstrap: Include Bootstrap for Sass
 
 Example:
-    yo webapp [--coffee]
+    yo haxe-webapp
 
     This will create:
         Gruntfile.js: Configuration for the task runner.
@@ -13,4 +13,4 @@ Example:
         package.json: Development packages installed by npm.
 
         app/: Your application files.
-        test/: Unit tests for your application.
+        haxe/: Haxe source code for Client and Server
