@@ -1,10 +1,10 @@
 {
-  "name": "generator-webapp",
-  "version": "0.4.8",
-  "description": "Scaffold out a front-end web app",
+  "name": "generator-haxe-webapp",
+  "version": "0.0.1",
+  "description": "Scaffold out an Haxe/JS web app",
   "license": "BSD",
-  "repository": "yeoman/generator-webapp",
-  "author": "The Yeoman Team",
+  "repository": "clemos/generator-haxe-webapp",
+  "author": "clemos",
   "main": "app/index.js",
   "engines": {
     "node": ">=0.10.0",
@@ -20,11 +20,12 @@
     "yeoman-generator",
     "web",
     "app",
-    "front-end",
     "h5bp",
     "modernizr",
     "jquery",
-    "grunt"
+    "grunt",
+    "haxe",
+    "nodejs"
   ],
   "dependencies": {
     "yeoman-generator": "~0.16.0",
