@@ -33,26 +33,7 @@ module.exports = function (grunt) {
             bower: {
                 files: ['bower.json'],
                 tasks: ['bowerInstall']
-            },<% if (coffee) { %>
-            coffee: {
-                files: ['<%%= config.app %>/<%%= config.public %>/scripts/{,*/}*.{coffee,litcoffee,coffee.md}'],
-                tasks: ['coffee:dist']
             },
-            coffeeTest: {
-                files: ['test/spec/{,*/}*.{coffee,litcoffee,coffee.md}'],
-                tasks: ['coffee:test', 'test:watch']
-            },<% } else { %>
-            js: {
-                files: ['<%%= config.app %>/<%%= config.public %>/scripts/{,*/}*.js'],
-                tasks: ['jshint'],
-                options: {
-                    livereload: true
-                }
-            },
-            jstest: {
-                files: ['test/spec/{,*/}*.js'],
-                tasks: ['test:watch']
-            },<% } %>
             gruntfile: {
                 files: ['Gruntfile.js']
             },<% if (includeCompass) { %>
@@ -70,8 +51,7 @@ module.exports = function (grunt) {
                 },
                 files: [
                     '<%%= config.app %>/<%%= config.public %>/{,*/}*.html',
-                    '.tmp/styles/{,*/}*.css',<% if (coffee) { %>
-                    '.tmp/scripts/{,*/}*.js',<% } %>
+                    '.tmp/styles/{,*/}*.css',
                     '<%%= config.app %>/<%%= config.public %>/images/{,*/}*'
                 ]
             }
@@ -91,20 +71,6 @@ module.exports = function (grunt) {
                     middleware: function(connect) {
                         return [
                             connect.static('.tmp'),
-                            connect().use('/bower_components', connect.static('./bower_components')),
-                            connect.static( config.app + '/' + config.public )
-                        ];
-                    }
-                }
-            },
-            test: {
-                options: {
-                    open: false,
-                    port: 9001,
-                    middleware: function(connect) {
-                        return [
-                            connect.static('.tmp'),
-                            connect.static('test'),
                             connect().use('/bower_components', connect.static('./bower_components')),
                             connect.static( config.app + '/' + config.public )
                         ];
@@ -134,60 +100,7 @@ module.exports = function (grunt) {
             server: '.tmp'
         },
 
-        // Make sure code styles are up to par and there are no obvious mistakes
-        jshint: {
-            options: {
-                jshintrc: '.jshintrc',
-                reporter: require('jshint-stylish')
-            },
-            all: [
-                'Gruntfile.js',
-                '<%%= config.app %>/<%%= config.public %>/scripts/{,*/}*.js',
-                '!<%%= config.app %>/<%%= config.public %>/scripts/vendor/*',
-                'test/spec/{,*/}*.js'
-            ]
-        },<% if (testFramework === 'mocha') { %>
-
-        // Mocha testing framework configuration options
-        mocha: {
-            all: {
-                options: {
-                    run: true,
-                    urls: ['http://<%%= connect.test.options.hostname %>:<%%= connect.test.options.port %>/index.html']
-                }
-            }
-        },<% } else if (testFramework === 'jasmine') { %>
-
-        // Jasmine testing framework configuration options
-        jasmine: {
-            all: {
-                options: {
-                    specs: 'test/spec/{,*/}*.js'
-                }
-            }
-        },<% } %><% if (coffee) { %>
-
-        // Compiles CoffeeScript to JavaScript
-        coffee: {
-            dist: {
-                files: [{
-                    expand: true,
-                    cwd: '<%%= config.app %>/<%%= config.public %>/scripts',
-                    src: '{,*/}*.{coffee,litcoffee,coffee.md}',
-                    dest: '.tmp/scripts',
-                    ext: '.js'
-                }]
-            },
-            test: {
-                files: [{
-                    expand: true,
-                    cwd: 'test/spec',
-                    src: '{,*/}*.{coffee,litcoffee,coffee.md}',
-                    dest: '.tmp/spec',
-                    ext: '.js'
-                }]
-            }
-        },<% } %><% if (includeCompass) { %>
+        <% if (includeCompass) { %>
 
         // Compiles Sass to CSS and generates necessary files if requested
         compass: {
@@ -408,12 +321,7 @@ module.exports = function (grunt) {
                     'nodemon:server'
                 ]
             },
-            test: [<% if (coffee) { %>
-                'coffee',<% } %>
-                'copy:styles'
-            ],
-            dist: [<% if (coffee) { %>
-                'coffee',<% } if (includeCompass) { %>
+            dist: [<% if (includeCompass) { %>
                 'compass',<% } %>
                 'copy:styles',
                 'imagemin',
@@ -460,22 +368,6 @@ module.exports = function (grunt) {
         grunt.task.run([target ? ('serve:' + target) : 'serve']);
     });
 
-    grunt.registerTask('test', function (target) {
-        if (target !== 'watch') {
-            grunt.task.run([
-                'clean:server',
-                'concurrent:test',
-                'autoprefixer'
-            ]);
-        }
-
-        grunt.task.run([
-            'connect:test',<% if (testFramework === 'mocha') { %>
-            'mocha'<% } else if (testFramework === 'jasmine') { %>
-            'jasmine'<% } %>
-        ]);
-    });
-
     grunt.registerTask('build', [
         'clean:dist',
         'haxe',
@@ -493,8 +385,6 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('default', [
-        'newer:jshint',
-        'test',
         'build'
     ]);
 };

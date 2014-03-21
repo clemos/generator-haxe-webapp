@@ -8,11 +8,22 @@ class Server {
 		
 		var express = new Express();
 		var dirname = Node.__dirname;
+		var pub = dirname + "/public";
 		var PORT = 9000;
+		var dev = Node.process.argv[1] == "dev";
+
+		express.all('/', function(req,res){
+			res.sendfile(pub+'/index.html');
+		});
 
 		express.use( new Static( dirname + "/../.tmp" ) );
 		express.use( '/bower_components' , new Static( dirname + "/../bower_components" ) );
 		express.use( new Static( dirname + "/public" ) );
+
+		express.use(function(req,res){
+			res.status(404);
+			res.sendfile(pub+'/404.html');
+		});
 
 		trace('listening to port $PORT');
 

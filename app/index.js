@@ -9,24 +9,6 @@ var chalk = require('chalk');
 var AppGenerator = module.exports = function Appgenerator(args, options, config) {
   yeoman.generators.Base.apply(this, arguments);
 
-  // setup the test-framework property, Gruntfile template will need this
-  this.testFramework = options['test-framework'] || 'mocha';
-  this.coffee = options.coffee;
-
-  // for hooks to resolve on mocha by default
-  options['test-framework'] = this.testFramework;
-
-  // resolved to mocha by default (could be switched to jasmine for instance)
-  this.hookFor('test-framework', {
-    as: 'app',
-    options: {
-      options: {
-        'skip-install': options['skip-install-message'],
-        'skip-message': options['skip-install']
-      }
-    }
-  });
-
   this.options = options;
 
   this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
@@ -93,10 +75,6 @@ AppGenerator.prototype.git = function git() {
 AppGenerator.prototype.bower = function bower() {
   this.copy('bowerrc', '.bowerrc');
   this.copy('_bower.json', 'bower.json');
-};
-
-AppGenerator.prototype.jshint = function jshint() {
-  this.copy('jshintrc', '.jshintrc');
 };
 
 AppGenerator.prototype.editorConfig = function editorConfig() {

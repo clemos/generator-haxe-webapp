@@ -9,3 +9,4 @@
 -main Client
 -js app/public/scripts/main.js
 -cp haxe
+-lib js-kit
