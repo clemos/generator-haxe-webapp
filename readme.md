@@ -1,76 +1,42 @@
-# Web app generator [![Build Status](https://secure.travis-ci.org/yeoman/generator-webapp.png?branch=master)](http://travis-ci.org/yeoman/generator-webapp) [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Haxe web app generator for Yeoman
 
-[Yeoman](http://yeoman.io) generator that scaffolds out a front-end web app.
+[Yeoman](http://yeoman.io/) is a fantastic tool for quickly scaffolding projects that are easy to test, build and deploy.
 
-![](http://i.imgur.com/uKTT2Hj.png)
+This project is basically a fork of Yeoman's official [generator-webapp](https://github.com/yeoman/generator-webapp), that adds [Haxe](http://haxe.org)/JS support (including node.js).
 
-## Features
+It has all the same features than `generator-webapp`, **except** :
+* Coffeescript support : Why exactly would we need it :)
+* Mocha Unit tests : removed for now
+* jshint : most Haxe generated JS code will fail jshint
 
-* CSS Autoprefixing *(new)*
-* Built-in preview server with LiveReload
-* Automagically compile CoffeeScript & Compass
-* Automagically lint your scripts
-* Automagically wire up your Bower components with [bower-install](#third-party-dependencies).
-* Awesome Image Optimization (via OptiPNG, pngquant, jpegtran and gifsicle)
-* Mocha Unit Testing with PhantomJS
-* Optional - Bootstrap for Sass
-* Optional - Leaner Modernizr builds *(new)*
+The project currently requires that you install [haxe-js-kit](https://github.com/clemos/haxe-js-kit) as an haxelib.
 
-For more information on what `generator-webapp` can do for you, take a look at the [Grunt tasks](https://github.com/yeoman/generator-webapp/blob/master/app/templates/_package.json) used in our `package.json`.
+It makes use of the great [grunt-haxe](https://github.com/Fintan/grunt-haxe) tasks.
 
+### Installation
 
-## Getting Started
-
-- Install: `npm install -g generator-webapp`
-- Run: `yo webapp`
-- Run `grunt` for building and `grunt serve` for preview [*](#serve-note)
-
-
-#### Third-Party Dependencies
-
-*(HTML/CSS/JS/Images/etc)*
-
-Third-party dependencies are managed with [bower-install](https://github.com/stephenplusplus/grunt-bower-install). Add new dependencies using **Bower** and then run the **Grunt** task to load them:
-
-```bash
-  bower install --save jquery
-  grunt bowerInstall
+It's not published as an NPM package yet, so if you want to test, you'll need to :
+```
+git clone https://github.com/clemos/generator-haxe-webapp.git
+cd generator-haxe-webapp
+npm link
 ```
 
-This works if the package author has followed the [Bower spec](https://github.com/bower/bower.json-spec). If the files are not automatically added to your index.html, check with the package's repo for support and/or file an issue with them to have it updated.
+### Usage
 
-To manually add dependencies, `bower install depName --save` to get the files, then add a `script` or `style` tag to your `index.html` or an other appropriate place.
+In a new directory, type :
+```
+yo haxe-webapp
+```
+The directory layout is pretty similar to `generator-webapp`'s, except :
+* `app/public` is the "document root" rather than `app`
+* `haxe` folder contains base code for a Server/Client app
 
-
-#### Grunt Serve Note
-
-Note: `grunt server` was previously used for previewing in earlier versions of the project and is being deprecated in favor of `grunt serve`.
-
-
-## Options
-
-* `--skip-install`
-
-  Skips the automatic execution of `bower` and `npm` after scaffolding has finished.
-
-* `--test-framework=<framework>`
-
-  Defaults to `mocha`. Can be switched for another supported testing framework like `jasmine`.
-
-* `--coffee`
-
-  Add support for [CoffeeScript](http://coffeescript.org/).
-
-
-## Contribute
-
-See the [contributing docs](https://github.com/yeoman/yeoman/blob/master/contributing.md)
-
-Note: We are regularly asked whether we can add or take away features. If a change is good enough to have a positive impact on all users, we are happy to consider it.
-
-If not, `generator-webapp` is fork-friendly and you can always maintain a custom version which you `npm install && npm link` to continue using via `yo webapp` or a name of your choosing.
-
-
-## License
-
-[BSD license](http://opensource.org/licenses/bsd-license.php)
+You can test your app locally using
+```
+grunt serve
+```
+and build an optimised version, ready to be deployed, with :
+```
+grunt
+```
