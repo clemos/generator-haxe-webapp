@@ -1,6 +1,10 @@
 # Haxe web app generator for Yeoman
 
-This is basically a fork of Yeoman's official [generator-webapp](https://github.com/yeoman/generator-webapp), so it has all the same features, **except** :
+[Yeoman](http://yeoman.io/) is a fantastic tool for quickly scaffolding projects that are easy to test, build and deploy.
+
+This project is basically a fork of Yeoman's official [generator-webapp](https://github.com/yeoman/generator-webapp), that adds [Haxe](http://haxe.org)/JS support (including node.js).
+
+It has all the same features than `generator-webapp`, **except** :
 * Coffeescript support : Why exactly would we need it :)
 * Mocha Unit tests : removed for now
 * jshint : most Haxe generated JS code will fail jshint
