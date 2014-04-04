@@ -278,6 +278,22 @@ module.exports = function (grunt) {
                         '{,*/}*.html',
                         'styles/fonts/{,*/}*.*'
                     ]
+                }, {
+                    expand: true,
+                    dot: true,
+                    cwd: '<%%= config.app %>',
+                    dest: '<%%= config.dist %>',
+                    src: [
+                        '*.js'
+                    ]
+                }, {
+                    expand: true,
+                    dot: true,
+                    cwd: '',
+                    dest: '<%%= config.dist %>',
+                    src: [
+                        'package.json'
+                    ]
                 }<% if (includeBootstrap) { %>, {
                     expand: true,
                     dot: true,<% if (includeCompass) { %>
@@ -318,7 +334,8 @@ module.exports = function (grunt) {
                 },
                 tasks: [
                     'watch',
-                    'nodemon:server'
+                    'nodemon:server',
+                    'open:server'
                 ]
             },
             dist: [<% if (includeCompass) { %>
@@ -343,6 +360,12 @@ module.exports = function (grunt) {
         haxe : {
             all : {
                 hxml : 'build.hxml'
+            }
+        },
+
+        open : {
+            server : {
+                path : 'http://localhost:9000'
             }
         }
     });
