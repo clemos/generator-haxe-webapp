@@ -379,6 +379,7 @@ module.exports = function (grunt) {
         grunt.task.run([
             'clean:server',
             'haxe',
+            'npm-install',
             <% if (includeCompass) { %>
             'compass:server',
             <% } %>
