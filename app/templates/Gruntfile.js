@@ -356,7 +356,9 @@ module.exports = function (grunt) {
         grunt.task.run([
             'clean:server',
             'haxe',
+            <% if (includeCompass) { %>
             'compass:server',
+            <% } %>
             'copy:styles',
             'autoprefixer',
             'concurrent:server'

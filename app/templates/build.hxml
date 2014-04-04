@@ -3,6 +3,7 @@
 -js app/server.js
 -lib js-kit
 -cp haxe
+--macro npm.Package.export('package.json')
 
 # Client (js:main.js)
 --next
