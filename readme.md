@@ -16,27 +16,33 @@ It makes use of the great [grunt-haxe](https://github.com/Fintan/grunt-haxe) tas
 ### Installation
 
 It's not published as an NPM package yet, so if you want to test, you'll need to :
-```
+```bash
 git clone https://github.com/clemos/generator-haxe-webapp.git
 cd generator-haxe-webapp
 npm link
+```
+You also need to install the `js-kit` haxelib :
+```bash
+haxelib git js-kit https://github.com/clemos/haxe-js-kit.git haxelib
 ```
 
 ### Usage
 
 In a new directory, type :
-```
+```bash
 yo haxe-webapp
 ```
 The directory layout is pretty similar to `generator-webapp`'s, except :
 * `app/public` is the "document root" rather than `app`
 * `haxe` folder contains base code for a Server/Client app
 
-You can test your app locally using
-```
+You can test your app locally using :
+```bash
 grunt serve
 ```
-and build an optimised version, ready to be deployed, with :
-```
+And then open [localhost:9000](http://localhost:9000) in your browser.
+
+You can build an optimised version, ready to be deployed, with :
+```bash
 grunt
 ```
