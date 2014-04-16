@@ -284,7 +284,8 @@ module.exports = function (grunt) {
                     cwd: '<%%= config.app %>',
                     dest: '<%%= config.dist %>',
                     src: [
-                        '*.js'
+                        '*.js',
+                        'Procfile'
                     ]
                 }, {
                     expand: true,

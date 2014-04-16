@@ -96,6 +96,10 @@ AppGenerator.prototype.haxe = function haxe() {
   
 };
 
+AppGenerator.prototype.heroku = function heroku() {
+  this.copy('Procfile', 'app/Procfile');
+};
+
 AppGenerator.prototype.mainStylesheet = function mainStylesheet() {
   var css = 'main.' + (this.includeCompass ? 's' : '') + 'css';
   this.copy(css, 'app/public/styles/' + css);
