@@ -9,7 +9,7 @@ class Server {
 		var express = new Express();
 		var dirname = Node.__dirname;
 		var pub = dirname + "/public";
-		var dev = Node.process.argv[3] == "dev";
+		var dev = Node.process.argv[2] == "dev";
 
 		var PORT = Node.process.env.PORT;
 		if( PORT == null ){
