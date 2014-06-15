@@ -32,6 +32,8 @@ In a new directory, type :
 ```bash
 yo haxe-webapp
 ```
+Make sure that path to directory doesn't contain spaces, they could break `grunt serve` command.
+
 The directory layout is pretty similar to `generator-webapp`'s, except :
 * `app/public` is the "document root" rather than `app`
 * `haxe` folder contains base code for a Server/Client app
