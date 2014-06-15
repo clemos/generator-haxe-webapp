@@ -16,7 +16,7 @@ class Server {
 			PORT = 9000;
 		}
 
-		express.all('/', function(req,res,_){
+		express.all('/', function(req:js.npm.express.Request, res:js.npm.express.Response,_){
 			res.sendfile(pub+'/index.html');
 		});
 
@@ -27,7 +27,7 @@ class Server {
 
 		express.use( new Static( dirname + "/public" ) );
 
-		express.use(function(req,res,_){
+		express.use(function(req:js.npm.express.Request, res:js.npm.express.Response,_){
 			res.status(404);
 			res.sendfile(pub+'/404.html');
 		});
