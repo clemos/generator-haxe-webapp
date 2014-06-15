@@ -54,7 +54,11 @@ module.exports = function (grunt) {
                     '.tmp/styles/{,*/}*.css',
                     '<%%= config.app %>/<%%= config.public %>/images/{,*/}*'
                 ]
-            }
+            },
+            haxe: {
+    		    files: ["haxe/*.*"],
+    		    tasks: ["build"]
+    	    }
         },
 
         // The actual grunt server settings
