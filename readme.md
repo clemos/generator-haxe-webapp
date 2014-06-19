@@ -15,7 +15,13 @@ It makes use of the great [grunt-haxe](https://github.com/Fintan/grunt-haxe) tas
 
 ### Installation
 
-It's not published as an NPM package yet, so if you want to test, you'll need to :
+Install yeoman:
+
+```bash
+npm install -g yo
+```
+
+generator-haxe-webapp is not published as an NPM package yet, so if you want to test, you'll need to :
 ```bash
 git clone https://github.com/clemos/generator-haxe-webapp.git
 cd generator-haxe-webapp
